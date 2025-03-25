@@ -1,0 +1,16 @@
+{
+  "skills": [
+      {
+          "category": "Frontend",
+          "items": ["React", "React Native", "HTML5", "CSS", "SVG", "Redux", "Redux-Saga", "Apollo GraphQL"]
+      },
+      {
+          "category": "Backend",
+          "items": ["REST APIs", "GraphQL", "Firebase", "Node.js", "Deno", "Express", "SQL", "NoSQL"]
+      },
+      {
+          "category": "Universal",
+          "items": ["TypeScript", "JavaScript", "C++", "Python", "Git", "Docker", "CI/CD"]
+      }
+  ]
+}
