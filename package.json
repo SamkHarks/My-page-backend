@@ -1,0 +1,26 @@
+{
+  "name": "portfolio_backend",
+  "version": "1.0.0",
+  "description": "backend for portfolio page",
+  "license": "ISC",
+  "author": "Sami Härkönen",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev:watch": "tsc --watch",
+    "dev:server": "nodemon dist/index.js",
+    "dev": "concurrently \"npm run dev:watch\" \"npm run dev:server\""
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.13",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
