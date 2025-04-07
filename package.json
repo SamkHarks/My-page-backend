@@ -8,10 +8,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev:watch": "tsc --watch",
-    "dev:server": "nodemon dist/index.js",
-    "start": "concurrently --handle-sigint \"npm run dev:watch\" \"npm run dev:server\"",
-    "start-build": "node dist/index.js"
+    "dev": "concurrently -k \"tsc -w\" \"nodemon -q dist/index.js\"",
+    "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
