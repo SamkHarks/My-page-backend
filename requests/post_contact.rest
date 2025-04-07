@@ -1,0 +1,29 @@
+
+## Create a new contact, res 200
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "Your.name@example.com",
+  "message": "Good on ya mate!"
+}
+
+### Response 400, missing email
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "message": "Good on ya mate!"
+}
+
+### Response 400, wrong email format
+POST http://localhost:3001/api/contact
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "Your.name@example",
+  "message": "Good on ya mate!"
+}
