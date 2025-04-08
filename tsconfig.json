@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "module": "nodenext",
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -11,7 +15,7 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "outDir": "dist"
+    "outDir": "./dist"
   },
   "include": ["src/**/*.ts"]
 }

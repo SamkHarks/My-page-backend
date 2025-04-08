@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import skills from '../../data/skills.json' with { type: 'json' };
+import skills from '@/data/skills.json' with { type: 'json' };
 
 const router = express.Router();
 
