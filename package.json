@@ -7,8 +7,8 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "dev": "concurrently -k \"tsc -w\" \"nodemon -q dist/index.js\"",
+    "build": "tsup",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec tsx --require dotenv/config src/index.ts",
     "start": "node dist/index.js"
   },
   "devDependencies": {
@@ -16,9 +16,10 @@
     "@types/express": "^5.0.1",
     "@types/node": "^22.13.13",
     "@types/nodemailer": "^6.4.17",
-    "concurrently": "^9.1.2",
     "dotenv": "^16.4.7",
     "nodemon": "^3.1.9",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "dependencies": {
