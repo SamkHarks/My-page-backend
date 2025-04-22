@@ -1,4 +1,6 @@
 import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
+import { z } from 'zod';
+import { ValidationError } from '@/utils/errors.js'
 
 
 type Handler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
@@ -12,7 +14,11 @@ export class SafeRouter {
 
   private wrap(handler: Handler): RequestHandler {
     return (req: Request, res: Response, next: NextFunction) => {
-      handler(req, res, next).catch(next);
+      handler(req, res, next).catch(error => {
+        error instanceof z.ZodError
+        ? next(new ValidationError(error.issues, error.message, error.stack))
+        : next(error);
+      });
     };
   }
 
