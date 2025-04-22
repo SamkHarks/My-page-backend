@@ -1,5 +1,6 @@
-import { Request, Response } from 'express';
+import { NotFoundError } from '@/utils/errors.js';
+import { NextFunction, Request, Response } from 'express';
 
-export const unknownEndpoint = (_request: Request, response: Response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+export const unknownEndpoint = (_request: Request, _response: Response, next: NextFunction) => {
+  next(new NotFoundError());
 }

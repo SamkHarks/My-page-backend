@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import skills from '@/data/skills.json' with { type: 'json' };
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', (_req: Request, res: Response) => {
   res.status(200).json(skills);

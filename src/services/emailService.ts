@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { getStatusCodeForErrorCode } from '@/services/utils.js';
+import { EmailError } from '@/utils/errors.js';
 import SMTPTransport from 'nodemailer/lib/smtp-transport/index.js';
 
 // Define email options interface
@@ -25,7 +27,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Function to send emails
-export const sendEmail = (options: EmailOptions): Promise<SMTPTransport.SentMessageInfo> => {
+export const sendEmail = (options: EmailOptions): Promise<void | SMTPTransport.SentMessageInfo> => {
   return transporter.sendMail({
     from: `"Portfolio Contact" <${process.env['FROM_EMAIL']}>`,
     to: process.env['TO_EMAIL'], 
@@ -33,5 +35,10 @@ export const sendEmail = (options: EmailOptions): Promise<SMTPTransport.SentMess
     text: options.text,
     replyTo: options.to,
     //html: options.html,
+  }).catch((error: unknown) => {
+    if (error instanceof Error && 'code' in error && typeof error.code === 'string') {
+      throw new EmailError(error.code, error.message, getStatusCodeForErrorCode(error.code));
+    }
+    throw new EmailError('EUNKNOWN');
   });
 };
