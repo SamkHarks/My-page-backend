@@ -1,17 +1,13 @@
+import { AppError } from '@/utils/errors.js';
 import { Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 
 
 export const errorHandler = (error: Error, _request: Request, response: Response, _next: NextFunction) => {
-
-  if (error instanceof z.ZodError) {
-    // Handle Zod validation errors
-    response.status(400).json({
-      error: 'Validation error',
-      issues: error.issues,
-    });
+  if (error instanceof AppError) {
+    // Handle all custom AppErrors
+    response.status(error.statusCode).json(error.toJson());
     return;
   }
 
-  response.status(500).json({ error: error.message || 'Internal server error' });
+  response.status(500).json({ error: 'Internal server error' });
 };
