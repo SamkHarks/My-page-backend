@@ -14,10 +14,10 @@ describe(EmailError.name, () => {
     const json = error.toJson();
     expect(json).toEqual({
       message: 'Email service is currently unavailable. Please try again later.',
-      statusCode: 503,
       debug: {
         code: 'EAUTH',
         type: 'EmailError',
+        isOperational: true,
         suggestion: 'Check SMTP configuration or recipient addresses'
       }
     });
@@ -29,7 +29,6 @@ describe(EmailError.name, () => {
     const json = error.toJson();
     expect(json).toEqual({
       message: 'Email service is currently unavailable. Please try again later.',
-      statusCode: 503,
     });
   });
 
@@ -38,7 +37,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"Email service is currently unavailable. Please try again later."`);
-    expect(json.statusCode).toBe(503);
+    expect(error.code).toMatchInlineSnapshot(`"EAUTH"`);
+    expect(error.statusCode).toBe(503);
   });
 
   it('should transform the message for ECONNECTION error code', () => {
@@ -46,7 +46,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"Email service is currently unavailable. Please try again later."`);
-    expect(json.statusCode).toBe(503);
+    expect(error.code).toMatchInlineSnapshot(`"ECONNECTION"`);
+    expect(error.statusCode).toBe(503);
   });
 
   it('should transform the message for EDNS error code', () => {
@@ -54,7 +55,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"Email service is currently unavailable. Please try again later."`);
-    expect(json.statusCode).toBe(503);
+    expect(error.code).toMatchInlineSnapshot(`"EDNS"`);
+    expect(error.statusCode).toBe(503);
   });
 
   it('should transform the message for EENVELOPE error code', () => {
@@ -62,7 +64,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"Please check the email address and try again."`);
-    expect(json.statusCode).toBe(400);
+    expect(error.code).toMatchInlineSnapshot(`"EENVELOPE"`);
+    expect(error.statusCode).toBe(400);
   });
 
   it('should transform the message for EMESSAGE error code', () => {
@@ -70,7 +73,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"The message could not be processed. Please check the content."`);
-    expect(json.statusCode).toBe(422);
+    expect(error.code).toMatchInlineSnapshot(`"EMESSAGE"`);
+    expect(error.statusCode).toBe(422);
   });
 
   it('should transform the message for EPARSE error code', () => {
@@ -78,7 +82,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"The message could not be processed. Please check the content."`);
-    expect(json.statusCode).toBe(422);
+    expect(error.code).toMatchInlineSnapshot(`"EPARSE"`);
+    expect(error.statusCode).toBe(422);
   });
 
   it('should transform the message for ETIMEDOUT error code', () => {
@@ -86,7 +91,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"The request timed out. Please try again."`);
-    expect(json.statusCode).toBe(408);
+    expect(error.code).toMatchInlineSnapshot(`"ETIMEDOUT"`);
+    expect(error.statusCode).toBe(408);
   });
 
   it('should transform the message for EALREADYCLOSED error code', () => {
@@ -94,7 +100,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"The request timed out. Please try again."`);
-    expect(json.statusCode).toBe(408);
+    expect(error.code).toMatchInlineSnapshot(`"EALREADYCLOSED"`);
+    expect(error.statusCode).toBe(408);
   });
 
   it('should transform the message for EALREADYSENT error code', () => {
@@ -102,7 +109,8 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"This message has already been sent."`);
-    expect(json.statusCode).toBe(409);
+    expect(error.code).toMatchInlineSnapshot(`"EALREADYSENT"`);
+    expect(error.statusCode).toBe(409);
   });
 
   it('should handle unknown error codes gracefully', () => {
@@ -110,6 +118,7 @@ describe(EmailError.name, () => {
     const json = error.toJson();
 
     expect(json.message).toMatchInlineSnapshot(`"Failed to send email. Please try again later."`);
-    expect(json.statusCode).toBe(500);
+    expect(error.code).toMatchInlineSnapshot(`"UNKNOWN_CODE"`);
+    expect(error.statusCode).toBe(500);
   });
 });

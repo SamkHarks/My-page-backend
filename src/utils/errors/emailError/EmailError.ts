@@ -15,8 +15,7 @@ export class EmailError extends AppError {
 
   toJson() {
     const baseResponse = {
-      message: this.transformMessage(),
-      statusCode: this.statusCode,
+      message: this.transformMessage()
     };
   
     if (isDevelopment()) {
@@ -25,6 +24,7 @@ export class EmailError extends AppError {
         debug: {
           code: this.code,
           type: this.constructor.name,
+          isOperational: this.isOperational,
           suggestion: 'Check SMTP configuration or recipient addresses'
         }
       };

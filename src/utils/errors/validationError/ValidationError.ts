@@ -18,7 +18,6 @@ export class ValidationError extends AppError {
   toJson() {
     const baseResponse = {
       message: this.message,
-      statusCode: this.statusCode,
       issues: this.issues,
     };
 
@@ -27,6 +26,7 @@ export class ValidationError extends AppError {
         ...baseResponse,
         debug: {
           type: this.constructor.name,
+          isOperational: this.isOperational,
           suggestion: 'Check the validation rules'
         }
       };

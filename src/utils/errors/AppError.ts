@@ -23,8 +23,7 @@ export class AppError extends Error implements HttpError {
 
   toJson() {
     const baseResponse = {
-      message: this.message,
-      statusCode: this.statusCode,
+      message: this.message
     }
 
     if (isDevelopment()) {
@@ -32,6 +31,7 @@ export class AppError extends Error implements HttpError {
         ...baseResponse,
         debug: {
           type: this.constructor.name,
+          isOperational: this.isOperational,
           suggestion: 'Check the server logs for more details'
         }
       };

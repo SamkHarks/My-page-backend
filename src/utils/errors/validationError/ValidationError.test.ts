@@ -16,10 +16,10 @@ describe(ValidationError.name, () => {
     const json = error.toJson();
     expect(json).toEqual({
       message: 'Validation failed',
-      statusCode: 400,
       issues,
       debug: {
         type: 'ValidationError',
+        isOperational: true,
         suggestion: 'Check the validation rules',
       },
     });
@@ -33,7 +33,6 @@ describe(ValidationError.name, () => {
     const json = error.toJson();
     expect(json).toEqual({
       message: 'Validation failed',
-      statusCode: 400,
       issues,
     });
   });
