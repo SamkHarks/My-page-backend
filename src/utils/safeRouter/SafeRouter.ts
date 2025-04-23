@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import { z } from 'zod';
-import { ValidationError } from '@/utils/errors.js'
+import { ValidationError } from '@/utils/errors/validationError/ValidationError.js';
 
 
 type Handler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
@@ -16,7 +16,7 @@ export class SafeRouter {
     return (req: Request, res: Response, next: NextFunction) => {
       handler(req, res, next).catch(error => {
         error instanceof z.ZodError
-        ? next(new ValidationError(error.issues, error.message, error.stack))
+        ? next(new ValidationError(error.issues, "Validation Failed", error.stack))
         : next(error);
       });
     };

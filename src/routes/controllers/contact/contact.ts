@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { contactSchema } from '@/routes/controllers/contact/types.js';
 import { EmailOptions, sendEmail } from '@/services/emailService.js';
-import { SafeRouter } from '@/utils/SafeRouter.js';
+import { SafeRouter } from '@/utils/safeRouter/SafeRouter.js';
 
 
 const safeRouter = new SafeRouter();

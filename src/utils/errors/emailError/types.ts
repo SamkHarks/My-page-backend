@@ -1,5 +1,3 @@
-
-
 export type EmailErrorCode =
   | 'EAUTH'       // Authentication error
   | 'ECONNECTION' // Connection error
@@ -14,19 +12,17 @@ export type EmailErrorCode =
   | 'EALREADYCLOSED' // Connection already closed
   | 'EUNKNOWN';   // Catch-all for unknown errors
 
-type EmailErrorStatusCode = Record<EmailErrorCode, number>;
-
-export const statusMap: EmailErrorStatusCode = {
-  EAUTH: 401,
-  ECONNECTION: 502,
-  EENVELOPE: 400,
-  EMESSAGE: 400,
-  ETIMEDOUT: 504,
-  ESOCKET: 503,
-  EDNS: 502,
-  ESTREAM: 500,
-  EPARSE: 400,
-  EALREADYSENT: 400,
-  EALREADYCLOSED: 503,
-  EUNKNOWN: 500
-};
+export const emailErrorCodes: EmailErrorCode[] = [
+  'EAUTH',
+  'ECONNECTION',
+  'EENVELOPE',
+  'EMESSAGE',
+  'ETIMEDOUT',
+  'ESOCKET',
+  'EDNS',
+  'ESTREAM',
+  'EPARSE',
+  'EALREADYSENT',
+  'EALREADYCLOSED',
+  'EUNKNOWN'
+];

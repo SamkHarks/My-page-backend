@@ -1,7 +1,8 @@
+import { isDevelopment } from '@/utils/utils.js';
 import { Request, Response, NextFunction } from 'express';
 
 export const requestLogger = (req: Request, res: Response, next: NextFunction) => {
-  if (process.env['NODE_ENV'] === 'production') return next(); // Skip logging in production
+  if (!isDevelopment()) return next(); // Skip logging in production & test environments
 
   const start = Date.now();
   

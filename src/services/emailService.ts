@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer';
-import { getStatusCodeForErrorCode } from '@/services/utils.js';
-import { EmailError } from '@/utils/errors.js';
+import { EmailError } from '@/utils/errors/emailError/EmailError.js'
 import SMTPTransport from 'nodemailer/lib/smtp-transport/index.js';
 
 // Define email options interface
@@ -37,7 +36,7 @@ export const sendEmail = (options: EmailOptions): Promise<void | SMTPTransport.S
     //html: options.html,
   }).catch((error: unknown) => {
     if (error instanceof Error && 'code' in error && typeof error.code === 'string') {
-      throw new EmailError(error.code, error.message, getStatusCodeForErrorCode(error.code));
+      throw new EmailError(error.code, error.message);
     }
     throw new EmailError('EUNKNOWN');
   });
