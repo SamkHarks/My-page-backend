@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import { z } from 'zod';
-import { ValidationError } from '@/utils/errors.js'
+import { ValidationError } from '@/utils/errors/validationError/ValidationError.js';
 
 
 type Handler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
