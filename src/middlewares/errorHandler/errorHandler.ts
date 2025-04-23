@@ -1,4 +1,4 @@
-import { AppError } from '@/utils/errors.js';
+import { AppError } from '@/utils/errors/AppError.js';
 import { Request, Response, NextFunction } from 'express';
 
 
