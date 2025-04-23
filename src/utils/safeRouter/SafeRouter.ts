@@ -16,7 +16,7 @@ export class SafeRouter {
     return (req: Request, res: Response, next: NextFunction) => {
       handler(req, res, next).catch(error => {
         error instanceof z.ZodError
-        ? next(new ValidationError(error.issues, error.message, error.stack))
+        ? next(new ValidationError(error.issues, "Validation Failed", error.stack))
         : next(error);
       });
     };
