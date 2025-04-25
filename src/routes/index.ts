@@ -7,6 +7,6 @@ const router = Router();
 
 router.use('/api/skills', skillsRouter);
 router.use('/api/contact', contactRouter);
-router.use('/api/health', healthRouter);
+router.use('/health', healthRouter);
 
 export default router;
