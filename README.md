@@ -6,9 +6,6 @@ A Node.js/TypeScript backend service built with [Express](https://expressjs.com/
 
 - RESTful API endpoints
 - TypeScript support
-- Environment variable configuration
-- Health check endpoint
-- Database integration (if applicable)
 
 ## Technologies
 
